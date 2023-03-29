@@ -1,0 +1,319 @@
+/* 
+*************************
+ROOT
+*************************
+*/
+:root {
+  --bg-color: 185 69% 6%;
+  --c-green: 153 72% 79%;
+  --c-white: 0 0% 100%;
+  --c-input: 177 42% 11%;
+  --c-btn-disabled: 154 19% 36%;
+
+  --font-family: 'Anton';
+  --ff-body: 'Maven Pro';
+  --fs-300: 0.9rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+}
+
+// do not display anything if user screen orientation is not landscape
+@media (orientation: portrait) {
+  * {
+    display: none;
+  }
+}
+
+/* 
+*************************
+RESET
+*************************
+*/
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-family);
+  overflow: hidden;
+}
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  font-weight: 400;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* 
+*************************
+SMALL COMPONENT
+*************************
+*/
+.btn {
+  --shadow-color: #76d8b9;
+  background: hsl(var(--c-green));
+  color: hsl(var(--c-white));
+  font-family: var(--font-family);
+  padding: 0.3em 1em;
+  font-size: var(--fs-500);
+  cursor: pointer;
+  border-radius: 0.2em;
+  border: transparent;
+  border-right: solid 1px var(--shadow-color);
+  border-left: solid 3px var(--shadow-color);
+  border-bottom: solid 6px var(--shadow-color);
+  outline: transparent;
+  transform: scale(var(--scale-down));
+
+  &[type='submit'] {
+    margin-top: 3em;
+  }
+
+  &:hover {
+    --scale-down: 1;
+    border: transparent;
+    border-top: solid 6px var(--shadow-color);
+    border-right: solid 3px var(--shadow-color);
+    border-bottom: solid 1px var(--shadow-color);
+  }
+
+  &:active {
+    --scale-down: 0.98;
+  }
+
+  &:disabled {
+    background: hsl(var(--c-btn-disabled));
+    border: transparent;
+  }
+
+  &:focus {
+    border: transparent;
+    border-top: solid 6px var(--shadow-color);
+    border-right: solid 3px var(--shadow-color);
+    border-bottom: solid 1px var(--shadow-color);
+  }
+}
+
+/* 
+*************************
+START DIALOG
+*************************
+*/
+.start-dialog {
+  position: absolute;
+  z-index: 2000;
+  top: var(--dialog-top, 0);
+  left: 0;
+  background: hsl(var(--c-green));
+  background-image: url(https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+
+  transition: top 0.3s ease;
+
+  width: 100%;
+  height: 100%;
+
+  &__content {
+    background: hsl(var(--bg-color));
+    background-image: url(https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80);
+    box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 30px 30px hsl(162, 100%, 22%, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 0.5em;
+    color: hsl(var(--c-white));
+
+    & h1 {
+      font-family: var(--font-family);
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+    }
+
+    & p {
+      font-family: var(--ff-body);
+      font-size: var(--fs-300);
+    }
+
+    & strong {
+      font-family: var(--ff-body);
+      font-weight: normal;
+      font-size: 9px;
+    }
+  }
+}
+
+/* 
+*************************
+FORM
+*************************
+*/
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+
+  &__content {
+    position: relative;
+  }
+
+  &__label {
+    font-family: var(--ff-body);
+    font-size: var(--label-fs, var(--fs-300));
+    position: absolute;
+    left: 0;
+    top: var(--label-top, 14px);
+    transition: top 0.3s ease;
+  }
+
+  &__input {
+    font-family: var(--ff-body);
+    font-size: var(--fs-300);
+    outline: transparent;
+    border: transparent;
+    padding: 1em 0 0.3em 0;
+    background: transparent;
+    color: hsl(var(--c-white));
+    border-bottom: solid 1px hsl(var(--c-white));
+    width: 100%;
+
+    &:focus + label {
+      --label-top: 0;
+      --label-fs: 11px;
+      opacity: 0.7;
+    }
+
+    &:not(:placeholder-shown) + label {
+      --label-top: 0;
+      --label-fs: 11px;
+      opacity: 0.7;
+    }
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  & span {
+    text-align: center;
+    margin-top: 0.4em;
+    font-size: 2rem;
+  }
+}
+
+/* 
+*************************
+CANVAS
+*************************
+*/
+main {
+  position: relative;
+
+  & img {
+    position: absolute;
+    width: 100vw;
+    height: 100vw;
+    object-fit: cover;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+.canvas {
+  background: transparent;
+}
+
+/* 
+*************************
+BAR
+*************************
+*/
+
+/* 
+*************************
+SCORE BOARD
+*************************
+*/
+.score {
+  position: absolute;
+  z-index: 1000;
+  background: hsl(var(--c-green));
+  top: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5em 1em;
+  display: flex;
+  gap: 2em;
+
+  &__container {
+    text-align: center;
+    font-family: var(--font-family);
+    font-size: var(--fs-300);
+    color: hsl(var(--c-dark));
+    display: flex;
+    gap: 0.5em;
+  }
+}

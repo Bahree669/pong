@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pong-ku</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Maven+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <main>
+        <canvas id="canvas" class="canvas"></canvas>
+        <div class="bar"></div>
+
+        <img
+          src="https://images.unsplash.com/photo-1657586640569-4a3d4577328c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+          alt=""
+        />
+      </main>
+
+      <div class="start-dialog">
+        <div class="start-dialog__content">
+          <h1 id="dialogTitle">WELCOME TO PONG-KU!</h1>
+
+          <p>Select your player!</p>
+
+          <form id="player-form" class="form">
+            <div class="form__content">
+              <input
+                class="form__input"
+                id="playerOne"
+                placeholder="super dicky"
+                type="text"
+                autocomplete="off"
+                name="playerOne"
+                required
+              />
+              <label class="form__label" for="playerOne">Player one</label>
+            </div>
+
+            <span>VS</span>
+
+            <div class="form__content">
+              <input
+                class="form__input"
+                id="playerTwo"
+                placeholder="super dicky"
+                type="text"
+                autocomplete="off"
+                name="playerTwo"
+                required
+              />
+              <label class="form__label" for="playerTwo">Player two</label>
+            </div>
+
+            <button type="submit" class="btn" id="game-ctrl">START GAME</button>
+          </form>
+
+          <strong>
+            Note:<br />
+            1. Player one move by pressing the W and S key.<br />
+            2. Player two move by pressing arrow up and arrow down key.
+          </strong>
+        </div>
+      </div>
+
+      <div class="score">
+        <div class="score__container">
+          <p id="sp-a">Player name</p>
+          <p id="score-a">0</p>
+        </div>
+        <div class="score__container">
+          <p id="score-b">0</p>
+          <p id="sp-b">Player name</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
